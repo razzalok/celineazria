@@ -42,13 +42,11 @@ const User = () => {
 						<Popovers title='User.tsx' desc={<code>src/layout/User/User.tsx</code>}>
 							{`${userData?.name} ${userData?.surname}`}
 						</Popovers>
-						<code className='ps-2'>User.tsx</code>
 					</div>
 					<div className='user-sub-title'>
 						<Popovers title='User.tsx' desc={<code>src/layout/User/User.tsx</code>}>
 							User
 						</Popovers>
-						<code className='ps-2'>User.tsx</code>
 					</div>
 				</div>
 			</div>
