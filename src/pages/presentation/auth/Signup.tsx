@@ -18,10 +18,7 @@ const Signup = () => {
 	// const handleOnClickNotValues = useCallback(() => navigate('/auth-pages/sign-up'), [navigate]);
 	const [isLoading, setIsLoading] = useState<boolean>(false);
 	const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-	function isValidEmail(value:string) {
-		return <Alert isOutline>Please Enter Valid email</Alert>
-	  }
-
+	
 	  const validateEmail = (value:string) => {
 		let error;
 		if (!emailRegex.test(value)) {
@@ -34,9 +31,6 @@ const Signup = () => {
 		newUserEmail: Yup.string()
 		  .required('Email is required')
 		  .test('email', 'Invalid email address', (value) => !validateEmail(value)),
-		// newUserPassword : Yup.string()
-		// .test('password', 'Password must be alphanumeric and contain at least one special character', (value) => !validatePassword(value)),
-
 	  });
 
 	const formik = useFormik({
@@ -57,9 +51,6 @@ const Signup = () => {
 			} = {};
 			if (!values.newUserEmail) {
 				errors.newUserEmail = 'Required';
-				if(!isValidEmail(formik.values.newUserEmail)){
-					errors.newUserEmail = 'Please Enter Valid email';
-				}
 			}
 
 			if (!values.newUserName) {
@@ -83,10 +74,8 @@ const Signup = () => {
 					localStorage.setItem('user', JSON.stringify(values));
 			});
 			setIsLoading(false);
-			// navigate('/')
-			handleOnClick();
-	
-	
+			// handleOnClick();
+			navigate('/modals-step-form')
 			}
 		},
 	});

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Field, useFormik } from "formik";
+import { useFormik } from "formik";
 import Page from "../../../layout/Page/Page";
 import Modal, {
   ModalBody,
@@ -10,7 +10,6 @@ import Input from "../../../components/bootstrap/forms/Input";
 import FormGroup from "../../../components/bootstrap/forms/FormGroup";
 import Checks from "../../../components/bootstrap/forms/Checks";
 import Select from "../../../components/bootstrap/forms/Select";
-
 import DashboardScreen from "../../../assets/img/wanna/wanna5.png";
 
 const ModalsStepForm: React.FC = () => {
@@ -54,7 +53,9 @@ const ModalsStepForm: React.FC = () => {
       return errors;
     },
     validateOnChange: false,
-    onSubmit: (_values) => {},
+    onSubmit: (values) => {
+      
+    },
   });
 
   // Steps forms
@@ -81,12 +82,12 @@ const ModalsStepForm: React.FC = () => {
   };
   const closeModal = () => {
     setIsOpenModal(false);
-    navigate("/");
+    navigate('/');
   };
 
   return (
     <Page className="w-100 mt-10">
-      <Modal isOpen setIsOpen={setIsOpen} id="sdmsk12" size="lg">
+      <Modal isOpen={isOpen} setIsOpen={setIsOpen} id="sdmsk12" size="lg">
         <ModalBody>
           <div className="row">
             <div className="col-12 col-lg-8 offset-lg-2">

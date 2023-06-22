@@ -199,9 +199,7 @@ const Login: FC<ILoginProps> = ({ isSignUp }) => {
 								</Alert>
 
 								<form className='row g-4'>
-									{singUpStatus ? (
-										<Signup />
-									) : (
+									{singUpStatus ? <Signup/> : (
 										<>
 											<div className='col-12'>
 												<FormGroup
@@ -278,7 +276,7 @@ const Login: FC<ILoginProps> = ({ isSignUp }) => {
 													</Button>
 												)}
 											</div>
-										</>
+											</>
 									)}
 
 									{/* BEGIN :: Social Login */}
