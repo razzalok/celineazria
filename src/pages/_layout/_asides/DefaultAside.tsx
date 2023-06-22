@@ -26,7 +26,7 @@ const DefaultAside = () => {
 			</AsideHead>
 			<AsideBody>
 				<Navigation menu={dashboardPagesMenu} id='aside-dashboard' />
-				<NavigationLine />
+				{/* <NavigationLine />
 				{!doc && (
 					<>
 						<Navigation menu={demoPagesMenu} id='aside-demo-pages' />
@@ -57,9 +57,9 @@ const DefaultAside = () => {
 						</nav>
 					</>
 				)}
-				{asideStatus && doc && <div className='p-4'>Documentation</div>}
+				{asideStatus && doc && <div className='p-4'>Documentation</div>} */}
 			</AsideBody>
-			<AsideFoot>
+			{/* <AsideFoot>
 				<nav aria-label='aside-bottom-menu'>
 					<div className='navigation'>
 						<div
@@ -71,7 +71,7 @@ const DefaultAside = () => {
 							}}
 							data-tour='documentation'>
 							<span className='navigation-link navigation-link-pill'>
-								<span className='navigation-link-info'>
+								/* <span className='navigation-link-info'>
 									<Icon
 										icon={doc ? 'ToggleOn' : 'ToggleOff'}
 										color={doc ? 'success' : undefined}
@@ -81,7 +81,9 @@ const DefaultAside = () => {
 										{t('menu:Documentation') as ReactNode}
 									</span>
 								</span>
-								<span className='navigation-link-extra'>
+								
+							</span>
+							<span className='navigation-link-extra'>
 									<Icon
 										icon='Circle'
 										className={classNames(
@@ -91,12 +93,11 @@ const DefaultAside = () => {
 										)}
 									/>
 								</span>
-							</span>
 						</div>
 					</div>
 				</nav>
-				<User />
-			</AsideFoot>
+			</AsideFoot> */}
+			<User />
 		</Aside>
 	);
 };
