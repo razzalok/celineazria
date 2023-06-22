@@ -11,6 +11,8 @@ import FormGroup from "../../../components/bootstrap/forms/FormGroup";
 import Checks from "../../../components/bootstrap/forms/Checks";
 import Select from "../../../components/bootstrap/forms/Select";
 
+import DashboardScreen from "../../../assets/img/wanna/wanna5.png";
+
 const ModalsStepForm: React.FC = () => {
   const savedValue = localStorage.getItem("user");
   const parsedValue = savedValue ? JSON.parse(savedValue) : null;
@@ -90,7 +92,7 @@ const ModalsStepForm: React.FC = () => {
             <div className="col-12 col-lg-8 offset-lg-2">
               {steps[currentStep] === "Step 1" ? (
                 <div>
-                  <div className="text-center h2 my-3 fw-bold">MA OSSIM</div>
+                  <div className="text-center h1 my-3 fw-bold">MA OSSIM</div>
                   <div className="text-center display-2 fw-bold mb-5 lh-1">
                     START YOUR FREE TRAIL
                   </div>
@@ -171,29 +173,26 @@ const ModalsStepForm: React.FC = () => {
                         name="newUserConformation"
                         value={formik.values.newUserConformation}
                       /> */}
-                      <label className="d-flex">
-                        <Checks type="checkbox" checked="checked"></Checks>I
-                        agree to the
-                        <Link to="" className="mx-2">
-                          Terms of Use
+                      <Checks
+                        type="checkbox"
+                        checked="checked"
+                        label="I agree to the Terms of Use and Privacy Policy"
+                      ></Checks>
+                      {/* <Link to="" className="mx-2">
                         </Link>
-                        and
-                        <Link to="" className="mx-2">
-                          Privacy Policy
-                        </Link>
-                      </label>
+                        <Link to="" className="mx-2"></Link> */}
                     </FormGroup>
                   </div>
                 </div>
               ) : steps[currentStep] === "Step 2" ? (
                 <div>
-                  <div className="text-center text-dark h2 fw-bold mb-4">
+                  <div className="text-center h1 fw-bold mb-4">
                     Welcome to MA OSSIM!
                   </div>
-                  <div className="text-center text-dark h3 mb-4">
+                  <div className="text-center h3 mb-4">
                     Let’s set up your account
                   </div>
-                  <div className="text-center text-muted h5 mb-4">
+                  <div className="text-center h5 mb-4">
                     You can always change it later
                   </div>
                   <div className="mb-3">
@@ -204,10 +203,10 @@ const ModalsStepForm: React.FC = () => {
                 </div>
               ) : steps[currentStep] === "Step 3" ? (
                 <div>
-                  <div className="text-center text-dark h2 fw-bold mb-4">
+                  <div className="text-center h1 fw-bold mb-4">
                     Welcome to MA OSSIM!
                   </div>
-                  <div className="text-center text-dark h4 mb-4">
+                  <div className="text-center h4 mb-4">
                     Let’s set up your account
                   </div>
                   <div className="text-center text-muted h5 mb-4">
@@ -226,10 +225,10 @@ const ModalsStepForm: React.FC = () => {
                 </div>
               ) : steps[currentStep] === "Step 4" ? (
                 <div>
-                  <div className="text-center text-dark h2 fw-bold mb-4">
+                  <div className="text-center h1 fw-bold mb-4">
                     Which best describes you?
                   </div>
-                  <div className="text-center text-dark h4 mb-5">
+                  <div className="text-center h4 mb-5">
                     This will help us adapt the platform to fit your business
                     needs
                   </div>
@@ -297,49 +296,104 @@ const ModalsStepForm: React.FC = () => {
                 </div>
               ) : steps[currentStep] === "Step 5" ? (
                 <div>
-                  <div className="text-center text-dark h2 fw-bold mb-4">
-                    MA OSSIM
-                  </div>
-                  <div className="text-center text-dark h4 mb-5">
+                  <div className="text-center h1 fw-bold mb-4">MA OSSIM</div>
+                  <div className="text-center h4 mb-5">
                     How many are you on your team?
                   </div>
-                  <div className="team-button text-center">
+                  <div className="team-button text-center h-100">
                     <button
                       type="button"
-                      className="btn btn-outline-dark px-4 m-1"
+                      className="btn btn-light-info px-4 m-1"
                     >
                       Just Me
                     </button>
                     <button
                       type="button"
-                      className="btn btn-outline-dark px-4 m-1"
+                      className="btn btn-light-info px-4 m-1"
                     >
                       2-4
                     </button>
                     <button
                       type="button"
-                      className="btn btn-outline-dark px-4 m-1"
+                      className="btn btn-light-info px-4 m-1"
                     >
                       5-10
                     </button>
                     <button
                       type="button"
-                      className="btn btn-outline-dark px-4 m-1"
+                      className="btn btn-light-info px-4 m-1"
                     >
                       11-30
                     </button>
                     <button
                       type="button"
-                      className="btn btn-outline-dark px-4 m-1"
+                      className="btn btn-light-info px-4 m-1"
                     >
                       31+
                     </button>
                   </div>
                 </div>
               ) : steps[currentStep] === "Step 6" ? (
-                <div>{steps[currentStep]}</div>
+                <div>
+                  <div className="text-center h1 fw-bold mb-4">MA OSSIM</div>
+                  <div className="text-center h4 mb-5">
+                    Where are you located?
+                  </div>
+                  <div className="text-center h5 mb-5">
+                    This will help us adapt the platform to fit your business
+                    needs.
+                  </div>
+                  <div className="mb-3">
+                    <FormGroup
+                      id="countries"
+                      label="Countries"
+                      //   isFloating
+                    >
+                      <Select
+                        ariaLabel="countries"
+                        placeholder="Choose from list of countries"
+                        list={[
+                          { value: "count1", text: "Alabama" },
+                          { value: "count2", text: "Alaska" },
+                          { value: "count3", text: "Arizona" },
+                          { value: "count4", text: "Arkansas" },
+                        ]}
+                      />
+                    </FormGroup>
+                  </div>
+                  <div className="mb-3">
+                    <FormGroup
+                      id="cities"
+                      label="Cities"
+                      //   isFloating
+                    >
+                      <Select
+                        ariaLabel="cities"
+                        placeholder="Choose from list of cities"
+                        list={[
+                          { value: "city1", text: "Andalusia" },
+                          { value: "city2", text: "Anchorage" },
+                          { value: "city3", text: "Avondale" },
+                          { value: "city4", text: "Arkadelphia" },
+                        ]}
+                      />
+                    </FormGroup>
+                  </div>
+                </div>
               ) : (
-                <div>{steps[currentStep]}</div>
+                <div>
+                  <div className="text-center h2 fw-bold mb-4">
+                    <img src={DashboardScreen} alt="DashboardScreen" />
+                  </div>
+                  <div className="text-center h2 fw-bold mb-4">
+                    Welcome to MaOssim, we hope you enjoy it and make the most
+                    of it !
+                  </div>
+                  <div className="text-center h4 mb-5">
+                    An all-in-one platform that will allow you to promote your
+                    business with confidence.
+                  </div>
+                </div>
               )}
             </div>
           </div>
@@ -350,20 +404,20 @@ const ModalsStepForm: React.FC = () => {
 
           <div className="steps-action">
             {currentStep > 0 && (
-              <button onClick={previousStep} className="btn btn-dark px-4 mx-1">
+              <button
+                onClick={previousStep}
+                className="btn btn-light-info border-transparent px-4 mx-1"
+              >
                 Previous
               </button>
             )}
             {currentStep < steps.length - 1 && (
-              <button onClick={nextStep} className="btn btn-primary px-4 mx-1">
+              <button onClick={nextStep} className="btn btn-info px-4 mx-1">
                 Next
               </button>
             )}
             {currentStep === steps.length - 1 && (
-              <button
-                onClick={closeModal}
-                className="btn btn-success px-4 mx-1"
-              >
+              <button onClick={closeModal} className="btn btn-info px-4 mx-1">
                 Submit
               </button>
             )}
