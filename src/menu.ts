@@ -66,6 +66,13 @@ export const dashboardPagesMenu = {
 		icon: 'emoji_events',
 		subMenu: null,
 	},
+	clients: {
+		id: 'clients',
+		text: 'Clients',
+		path: '/clients',
+		icon: 'face',
+		subMenu: null,
+	},
 };
 
 export const modalPages = {
