@@ -7,21 +7,10 @@ const DefaultFooter = () => {
 		<Footer>
 			<div className='container-fluid'>
 				<div className='row'>
-					<div className='col'>
-						<Popovers
-							title='Footer.tsx'
-							desc={<code>src/pages/_layout/_footers/DefaultFooter.tsx</code>}>
-							Footer
+					<div className='col text-center'>
+						<Popovers>
+							&copy; All Right Reserved 2023-2024
 						</Popovers>
-						<code className='ps-3'>DefaultFooter.tsx</code>
-					</div>
-					<div className='col-auto'>
-						<Popovers
-							title='Footer.tsx'
-							desc={<code>src/pages/_layout/_footers/DefaultFooter.tsx</code>}>
-							Footer
-						</Popovers>
-						<code className='ps-3'>DefaultFooter.tsx</code>
 					</div>
 				</div>
 			</div>
