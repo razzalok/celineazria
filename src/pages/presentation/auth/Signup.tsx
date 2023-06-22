@@ -1,35 +1,21 @@
-import React, { FC, useCallback, useContext, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import React, { FC, startTransition, useCallback, useContext, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useFormik } from 'formik';
-import PageWrapper from '../../../layout/PageWrapper/PageWrapper';
-import Page from '../../../layout/Page/Page';
-import Card, { CardBody } from '../../../components/bootstrap/Card';
 import FormGroup from '../../../components/bootstrap/forms/FormGroup';
 import Input from '../../../components/bootstrap/forms/Input';
 import Button from '../../../components/bootstrap/Button';
-import Logo from '../../../components/Logo';
 import useDarkMode from '../../../hooks/useDarkMode';
-import AuthContext from '../../../contexts/authContext';
 import Spinner from '../../../components/bootstrap/Spinner';
 import Alert from '../../../components/bootstrap/Alert';
 import * as Yup from 'yup';
 
-
-// interface Values {
-// 	newUserPassword: string;
-// 	newUserSurname: string;
-// 	newUserName: string;
-// 	newUserEmail: string;
-// }
 
 const Signup = () => {
 	const { darkModeStatus } = useDarkMode();
 
 	const navigate = useNavigate();
 	const handleOnClick = useCallback(() => navigate('/modals-step-form'), [navigate]);
-	const handleOnClickNotValues = useCallback(() => navigate('/auth-pages/sign-up'), [navigate]);
+	// const handleOnClickNotValues = useCallback(() => navigate('/auth-pages/sign-up'), [navigate]);
 	const [isLoading, setIsLoading] = useState<boolean>(false);
 	const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 	function isValidEmail(value:string) {
@@ -88,25 +74,20 @@ const Signup = () => {
 
 			return errors;
 		},
-		validateOnChange: true,
-		onSubmit: (values) => {
-			setIsLoading(true);
-			setTimeout(() => {
-				if (
-					values.newUserEmail === '' ||
-					values.newUserName === '' ||
-					values.newUserPassword === '' ||
-					values.newUserSurname === ''
-				) {
-					navigate('/auth-pages/sign-up');
-				} else {
-					localStorage.setItem('user', JSON.stringify(values));
-					handleOnClick();
-				}
-				setIsLoading(false);
-			}, 1000);
+		validateOnChange: false,
 
-			// console.log(values);
+		onSubmit:  (values) => {
+			setIsLoading(true);
+			if ( values.newUserEmail) {
+					startTransition( () => {
+					localStorage.setItem('user', JSON.stringify(values));
+			});
+			setIsLoading(false);
+			// navigate('/')
+			handleOnClick();
+	
+	
+			}
 		},
 	});
 
