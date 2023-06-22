@@ -14,8 +14,8 @@ import useDarkMode from '../../../hooks/useDarkMode';
 import AuthContext from '../../../contexts/authContext';
 import Spinner from '../../../components/bootstrap/Spinner';
 import Alert from '../../../components/bootstrap/Alert';
+import * as Yup from 'yup';
 
-import ModalsStepForm from '../dashboard/ModalsStepForm';
 
 // interface Values {
 // 	newUserPassword: string;
@@ -31,6 +31,28 @@ const Signup = () => {
 	const handleOnClick = useCallback(() => navigate('/modals-step-form'), [navigate]);
 	const handleOnClickNotValues = useCallback(() => navigate('/auth-pages/sign-up'), [navigate]);
 	const [isLoading, setIsLoading] = useState<boolean>(false);
+	const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+	function isValidEmail(value:string) {
+		return <Alert isOutline>Please Enter Valid email</Alert>
+	  }
+
+	  const validateEmail = (value:string) => {
+		let error;
+		if (!emailRegex.test(value)) {
+		  error = 'Invalid email address';
+		}
+		return error;
+	  };
+
+	  const validationSchema = Yup.object().shape({
+		newUserEmail: Yup.string()
+		  .required('Email is required')
+		  .test('email', 'Invalid email address', (value) => !validateEmail(value)),
+		// newUserPassword : Yup.string()
+		// .test('password', 'Password must be alphanumeric and contain at least one special character', (value) => !validatePassword(value)),
+
+	  });
+
 	const formik = useFormik({
 		enableReinitialize: true,
 		initialValues: {
@@ -39,6 +61,7 @@ const Signup = () => {
 			newUserSurname: '',
 			newUserPassword: '',
 		},
+		validationSchema,
 		validate: (values) => {
 			const errors: {
 				newUserEmail?: string;
@@ -48,6 +71,9 @@ const Signup = () => {
 			} = {};
 			if (!values.newUserEmail) {
 				errors.newUserEmail = 'Required';
+				if(!isValidEmail(formik.values.newUserEmail)){
+					errors.newUserEmail = 'Please Enter Valid email';
+				}
 			}
 
 			if (!values.newUserName) {
@@ -62,7 +88,7 @@ const Signup = () => {
 
 			return errors;
 		},
-		validateOnChange: false,
+		validateOnChange: true,
 		onSubmit: (values) => {
 			setIsLoading(true);
 			setTimeout(() => {

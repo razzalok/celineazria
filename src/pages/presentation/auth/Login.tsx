@@ -1,4 +1,4 @@
-import React, { FC, useCallback, useContext, useState } from 'react';
+import React, { FC, startTransition, useCallback, useContext, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
@@ -90,14 +90,18 @@ const Login: FC<ILoginProps> = ({ isSignUp }) => {
 			return errors;
 		},
 		validateOnChange: false,
-		onSubmit: (values) => {
-			if (usernameCheck(values.loginUsername)) {
-				if (passwordCheck(values.loginUsername, values.loginPassword)) {
+		onSubmit: async (values) => {
+			
+			if (await usernameCheck(values.loginUsername)) {
+				if (await passwordCheck(values.loginUsername, values.loginPassword)) {
+					startTransition(() => {
 					if (setUser) {
 						setUser(values.loginUsername);
 					}
-
+					localStorage.setItem('user', JSON.stringify(values));
+					
 					handleOnClick();
+				});
 				} else {
 					formik.setFieldError('loginPassword', 'Username and password do not match.');
 				}
@@ -117,8 +121,8 @@ const Login: FC<ILoginProps> = ({ isSignUp }) => {
 				formik.setFieldError('loginUsername', 'No such user found in the system.');
 			} else {
 				setSignInPassword(true);
+				setIsLoading(false);
 			}
-			setIsLoading(false);
 		}, 1000);
 	};
 
@@ -265,7 +269,11 @@ const Login: FC<ILoginProps> = ({ isSignUp }) => {
 													<Button
 														color='warning'
 														className='w-100 py-3'
-														onClick={formik.handleSubmit}>
+														onClick={formik.handleSubmit}
+														>
+														{isLoading && (
+															<Spinner isSmall inButton isGrow />
+														)}
 														Login
 													</Button>
 												)}
