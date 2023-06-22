@@ -38,6 +38,34 @@ export const dashboardPagesMenu = {
 		icon: 'Dashboard',
 		subMenu: null,
 	},
+	partner: {
+		id: 'partner',
+		text: 'Partner',
+		path: '/partners',
+		icon: 'person',
+		subMenu: null,
+	},
+	task: {
+		id: 'task',
+		text: 'Tasks',
+		path: '/task',
+		icon: 'task',
+		subMenu: null,
+	},
+	productandservice: {
+		id: 'productandservice',
+		text: 'Product & Service',
+		path: '/product-and-service',
+		icon: 'inventory_2',
+		subMenu: null,
+	},
+	goals: {
+		id: 'goals',
+		text: 'Goals',
+		path: '/goals',
+		icon: 'emoji_events',
+		subMenu: null,
+	},
 };
 
 export const modalPages = {
