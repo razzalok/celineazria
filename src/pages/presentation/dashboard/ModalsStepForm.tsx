@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import Page from "../../../layout/Page/Page";
@@ -20,6 +20,8 @@ const ModalsStepForm: React.FC = () => {
   const newUserName = parsedValue?.newUserName;
   const newUserPassword = parsedValue?.newUserPassword;
   const newUserSurname = parsedValue?.newUserSurname;
+  const navigate = useNavigate();
+  const handleOnClick = useCallback(() => navigate('/'), [navigate]);
   // Formik uses
   const formik = useFormik({
     enableReinitialize: true,
@@ -54,7 +56,7 @@ const ModalsStepForm: React.FC = () => {
     },
     validateOnChange: false,
     onSubmit: (values) => {
-      
+      handleOnClick()
     },
   });
 
@@ -71,7 +73,7 @@ const ModalsStepForm: React.FC = () => {
     "Step 7",
   ];
   const [currentStep, setCurrentStep] = useState(0);
-  const navigate = useNavigate();
+
 
   const nextStep = () => {
     setCurrentStep(currentStep + 1);
@@ -82,6 +84,7 @@ const ModalsStepForm: React.FC = () => {
   };
   const closeModal = () => {
     setIsOpenModal(false);
+    setIsOpen(false);
     navigate('/');
   };
 
