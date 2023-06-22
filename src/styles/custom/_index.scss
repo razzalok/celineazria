@@ -5,8 +5,7 @@
 @use 'sass:map';
 
 .scroll-margin {
-	scroll-margin-top: map.get($header, height) + map.get($subheader, height) +
-		map.get($page, padding-y);
+	scroll-margin-top: map.get($header, height) + map.get($subheader, height) + map.get($page, padding-y);
 }
 
 .sticky-top-size {
@@ -15,4 +14,14 @@
 
 .border-transparent {
 	--#{$prefix}border-opacity: 0;
+}
+
+.team-button {
+	.btn {
+		&:hover {
+			border: solid 1px #6c5dd3;
+			background-color: #6c5dd3;
+			color: #fff;
+		}
+	}
 }
