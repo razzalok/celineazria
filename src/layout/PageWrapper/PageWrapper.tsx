@@ -31,10 +31,14 @@ const PageWrapper = forwardRef<HTMLDivElement, IPageWrapperProps>(
 		});
 
 		const { user } = useContext(AuthContext);
-
+		const savedValue = localStorage.getItem("user");
+		const parsedValue = savedValue ? JSON.parse(savedValue) : null;
+		// Access the properties of the parsed object
+		
+		const newUserName = parsedValue?.newUserName;
 		const navigate = useNavigate();
 		useEffect(() => {
-			if (isProtected && user === '') {
+			if ((isProtected && user === '') && newUserName==='') {
 				navigate(`../${demoPagesMenu.login.path}`);
 			}
 			return () => {};
